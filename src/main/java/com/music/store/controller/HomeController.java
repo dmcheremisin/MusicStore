@@ -39,4 +39,13 @@ public class HomeController {
         model.addAttribute("product", product);
         return "viewProduct";
     }
+
+    @RequestMapping("/productList/add")
+    public String addStubProduct(Model model) {
+        Product product = new Product();
+        product.setProductName("new tool");
+        product.setProductCategory("accessorizes");
+        productDao.addProduct(product);
+        return getProducts(model);
+    }
 }

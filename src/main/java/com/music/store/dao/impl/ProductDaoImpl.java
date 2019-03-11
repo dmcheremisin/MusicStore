@@ -20,7 +20,7 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public void addProduct(Product product) {
         Session session = sessionFactory.getCurrentSession();
-        session.save(product);
+        session.saveOrUpdate(product);
     }
 
     @Override

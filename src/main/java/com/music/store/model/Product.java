@@ -6,14 +6,11 @@ import javax.persistence.*;
  * Created by Dmitrii on 09.03.2019.
  */
 @Entity
-@Table(name = "products")
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private int productId;
-
 
     private String productName;
     private String productCategory;
