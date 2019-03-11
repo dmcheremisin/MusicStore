@@ -20,20 +20,20 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public void addProduct(Product product) {
         Session session = sessionFactory.getCurrentSession();
-        session.save(product);
+        session.saveOrUpdate(product);
     }
 
     @Override
     public Product getProductById(String id) {
         Session session = sessionFactory.getCurrentSession();
-        Product product = session.get(Product.class, id);
+        Product product = (Product) session.get(Product.class, id);
         return product;
     }
 
     @Override
     public List<Product> getAllProducts() {
         Session session = sessionFactory.getCurrentSession();
-        List<Product> products = session.createQuery("from Product").getResultList();
+        List<Product> products = session.createQuery("from Product").list();
         return products;
     }
 
