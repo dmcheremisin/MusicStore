@@ -9,7 +9,7 @@
     <p class="lead">Fill the below information to add a product:</p>
 </div>
 
-<form:form action="#" method="post" modelAttribute="product">
+<form:form action="${pageContext.request.contextPath}/admin/productInventory/addProduct" method="post" modelAttribute="product">
     <div class="form-group">
         <label for="name">Name</label>
         <form:input path="productName" id="name" class="form-control" />
