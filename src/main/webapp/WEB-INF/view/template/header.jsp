@@ -36,7 +36,7 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="<c:url value="/" />">Home</a></li>
                         <li><a href="<c:url value="/productList" /> ">Products</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="<c:url value="/admin" />" >Inventory</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
