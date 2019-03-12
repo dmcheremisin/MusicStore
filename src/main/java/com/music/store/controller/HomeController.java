@@ -34,7 +34,7 @@ public class HomeController {
     }
 
     @RequestMapping("/productList/viewProduct/{id}")
-    public String viewProduct(@PathVariable String id, Model model) {
+    public String viewProduct(@PathVariable int id, Model model) {
         Product product = productDao.getProductById(id);
         model.addAttribute("product", product);
         return "viewProduct";
@@ -47,5 +47,29 @@ public class HomeController {
         product.setProductCategory("accessorizes");
         productDao.addProduct(product);
         return getProducts(model);
+    }
+
+    @RequestMapping("/admin")
+    public String adminPage() {
+        return "admin";
+    }
+
+    @RequestMapping("/admin/productInventory")
+    public String productInventory(Model model) {
+        List<Product> allProducts = productDao.getAllProducts();
+        model.addAttribute("products", allProducts);
+        return "productInventory";
+    }
+
+    @RequestMapping("admin/productInventory/addProduct")
+    public String addProduct(Model model){
+        Product product = new Product();
+        product.setProductCategory("instrument");
+        product.setProductCondition("new");
+        product.setProductStatus("active");
+
+        model.addAttribute("product", product);
+
+        return "addProduct";
     }
 }
