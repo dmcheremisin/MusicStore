@@ -2,7 +2,7 @@ package com.music.store.controller;
 
 import com.music.store.converters.ProductToProductViewModelConverter;
 import com.music.store.dao.ProductDao;
-import com.music.store.model.Product;
+import com.music.store.entity.Product;
 import com.music.store.viewModels.ProductViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

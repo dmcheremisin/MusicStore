@@ -1,28 +1,41 @@
-package com.music.store.model;
-
-import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.web.multipart.MultipartFile;
+package com.music.store.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 
 /**
  * Created by Dmitrii on 09.03.2019.
  */
 @Entity
+@Table(name = "product")
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "productId")
     private int productId;
 
+    @Column(name = "productName")
     private String productName;
+
+    @Column(name = "productCategory")
     private String productCategory;
+
+    @Column(name = "productDescription")
     private String productDescription;
+
+    @Column(name = "productPrice")
     private double productPrice;
+
+    @Column(name = "productCondition")
     private String productCondition;
+
+    @Column(name = "productStatus")
     private String productStatus;
+
+    @Column(name = "unitInStock")
     private int unitInStock;
+
+    @Column(name = "productManufacturer")
     private String productManufacturer;
 
     public int getProductId() {
