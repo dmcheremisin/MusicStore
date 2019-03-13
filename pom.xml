@@ -50,6 +50,11 @@
             <artifactId>hibernate-core</artifactId>
             <version>5.2.0.Final</version>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>5.4.1.Final</version>
+        </dependency>
 
         <dependency>
             <groupId>com.h2database</groupId>
@@ -68,18 +73,5 @@
             <version>2.4</version>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.0.0</version>
-                <configuration>
-                    <includeEmptyDirectories>true</includeEmptyDirectories>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

@@ -5,6 +5,7 @@ import com.music.store.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -50,15 +52,6 @@ public class HomeController {
         return "viewProduct";
     }
 
-    @RequestMapping("/productList/add")
-    public String addStubProduct(Model model) {
-        Product product = new Product();
-        product.setProductName("new tool");
-        product.setProductCategory("accessorizes");
-        productDao.addProduct(product);
-        return getProducts(model);
-    }
-
     @RequestMapping("/admin")
     public String adminPage() {
         return "admin";
@@ -84,7 +77,11 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/admin/productInventory/addProduct", method = RequestMethod.POST)
-    public String addProduct(@ModelAttribute("product") Product product, HttpServletRequest request){
+    public String addProduct(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult, HttpServletRequest request){
+        if(bindingResult.hasErrors()){
+            return "addProduct";
+        }
+
         productDao.addProduct(product);
 
         MultipartFile productImage = product.getProductImage();
@@ -129,7 +126,10 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/admin/productInventory/edit", method = RequestMethod.POST)
-    public String editProduct(@ModelAttribute("product") Product product, Model model, HttpServletRequest request) {
+    public String editProduct(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult, HttpServletRequest request) {
+        if(bindingResult.hasErrors()){
+            return "addProduct";
+        }
         MultipartFile image = product.getProductImage();
         String realPath = request.getSession().getServletContext().getRealPath("/");
         Path path = Paths.get(realPath + "\\WEB-INF\\resources\\images\\" + product.getProductId() + ".png");
