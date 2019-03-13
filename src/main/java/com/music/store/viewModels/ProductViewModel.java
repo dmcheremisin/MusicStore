@@ -1,29 +1,31 @@
-package com.music.store.model;
+package com.music.store.viewModels;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.*;
 import javax.validation.constraints.Min;
 
-/**
- * Created by Dmitrii on 09.03.2019.
- */
-@Entity
-public class Product {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ProductViewModel {
     private int productId;
 
+    @NotEmpty(message = "The product name must not be null")
     private String productName;
+
     private String productCategory;
     private String productDescription;
+
+    @Min(value = 0, message = "The product price must not be less than zero")
     private double productPrice;
+
     private String productCondition;
     private String productStatus;
+
+    @Min(value = 0, message = "The product price must not be less than zero")
     private int unitInStock;
+
     private String productManufacturer;
+
+    private MultipartFile productImage;
 
     public int getProductId() {
         return productId;
@@ -95,5 +97,13 @@ public class Product {
 
     public void setProductManufacturer(String productManufacturer) {
         this.productManufacturer = productManufacturer;
+    }
+
+    public MultipartFile getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(MultipartFile productImage) {
+        this.productImage = productImage;
     }
 }
