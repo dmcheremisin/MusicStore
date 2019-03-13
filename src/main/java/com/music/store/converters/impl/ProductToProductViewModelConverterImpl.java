@@ -1,7 +1,7 @@
 package com.music.store.converters.impl;
 
 import com.music.store.converters.ProductToProductViewModelConverter;
-import com.music.store.model.Product;
+import com.music.store.entity.Product;
 import com.music.store.viewModels.ProductViewModel;
 import org.springframework.stereotype.Component;
 

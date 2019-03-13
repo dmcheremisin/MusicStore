@@ -1,7 +1,7 @@
 package com.music.store.dao.impl;
 
 import com.music.store.dao.ProductDao;
-import com.music.store.model.Product;
+import com.music.store.entity.Product;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

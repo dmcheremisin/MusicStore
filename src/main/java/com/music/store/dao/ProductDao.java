@@ -1,6 +1,6 @@
 package com.music.store.dao;
 
-import com.music.store.model.Product;
+import com.music.store.entity.Product;
 
 import java.util.List;
 

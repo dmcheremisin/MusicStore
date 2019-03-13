@@ -1,6 +1,6 @@
 package com.music.store.converters;
 
-import com.music.store.model.Product;
+import com.music.store.entity.Product;
 import com.music.store.viewModels.ProductViewModel;
 
 import java.util.List;
