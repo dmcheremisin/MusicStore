@@ -1,13 +1,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <%@ include file="/WEB-INF/view/template/header.jsp" %>
 
 <div class="page-header">
-    <h1>Admin page</h1>
+    <sec:authentication var="user" property="principal" />
+    <sec:authorize access="hasRole('ROLE_USER') and isAuthenticated()">
+        <h1>
+            Welcome: ${user.username} |
+            <form:form action="${pageContext.request.contextPath}/logout" method="POST">
+                <p><input type="submit" value="Logout" /></p>
+            </form:form>
+        </h1>
+    </sec:authorize>
 
     <p class="lead">This is administrator page!</p>
 </div>
+
 <h3>
     <a href="<c:url value="/admin/productInventory" />">Product Inventory</a>
 </h3>

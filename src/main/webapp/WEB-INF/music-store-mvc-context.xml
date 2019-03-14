@@ -2,8 +2,8 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:security="http://www.springframework.org/schema/c"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:jdbc="http://www.springframework.org/schema/jdbc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
     	http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -14,8 +14,9 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
-<context:component-scan base-package="com.music.store"/>
+    <context:component-scan base-package="com.music.store"/>
     <mvc:annotation-driven/>
+    <context:annotation-config/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/view/"/>
@@ -56,33 +57,6 @@
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" >
         <property name="maxUploadSize" value="1024000" />
     </bean>
-
-    <jdbc:initialize-database data-source="dataSource">
-        <jdbc:script location="classpath:schema.sql"/>
-    </jdbc:initialize-database>
-
-    <security:http auto-config="true" >
-        <security:intercept-url pattern="admin/**" access="ROLE_USER" />
-        <security:form-login
-                login-page="/login"
-                default-target-url="/login"
-                authentication-failure-url="/login?error"
-                username-parameter="username"
-                password-parameter="password"
-        />
-        <security:logout
-            logout-success-url="/login?logout"
-        />
-        <security:authentication-manager>
-            <security:authentication-provider>
-                <security:jdbc-user-service
-                        data-source-ref="dataSource"
-                        authorities-by-username-query="SELECT username, authority FROM authorities WHERE username = ?"
-                        users-by-username-query="SELECT username, password, enabled FROM users WHERE username = ?"
-                />
-            </security:authentication-provider>
-        </security:authentication-manager>
-    </security:http>
 
 </beans>
 

@@ -28,8 +28,12 @@ create table users(
   password varchar(50) not null,
   enabled boolean not null);
 
+INSERT INTO users VALUES ('admin', '{noop}nimda', 1);
+
 create table authorities (
   username varchar(50) not null,
   authority varchar(50) not null,
   constraint fk_authorities_users foreign key(username) references users(username));
 create unique index ix_auth_username on authorities (username,authority);
+
+INSERT INTO authorities VALUES ('admin', 'ROLE_USER');
