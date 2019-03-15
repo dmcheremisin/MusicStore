@@ -14,19 +14,8 @@ import java.nio.file.Path;
 @Controller
 public class HomeController {
 
-    private Path path;
-
-    @Autowired
-    private ProductDao productDao;
-
-    @Autowired
-    private ProductToProductViewModelConverter productToProductViewModelConverter;
-
     @RequestMapping("/")
     public String getHomePage() {
         return "index";
     }
-
-
-
 }
