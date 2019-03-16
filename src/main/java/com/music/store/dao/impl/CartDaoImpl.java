@@ -32,7 +32,7 @@ public class CartDaoImpl implements CartDao {
 
     @Override
     public void update(String id, Cart cart) {
-        if (listOfCarts.keySet().contains(cart.getId())) {
+        if (!listOfCarts.keySet().contains(cart.getId())) {
             throw new IllegalArgumentException(
                     String.format("Can not update cart with %s, because it doesn't exist", cart.getId()));
         }
@@ -45,6 +45,8 @@ public class CartDaoImpl implements CartDao {
             throw new IllegalArgumentException(
                     String.format("Can not delete cart with %s, because it doesn't exist", id));
         }
-        listOfCarts.remove(id);
+        Cart cart = listOfCarts.get(id);
+        cart.setTotal(0);
+        cart.setCartItems(new HashMap<>());
     }
 }

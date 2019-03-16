@@ -11,12 +11,13 @@
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_USER')" />
         <form-login
                 login-page="/loginPage"
-                default-target-url="/loginPage"
+                default-target-url="/admin"
                 authentication-failure-url="/loginPage?error"
                 username-parameter="username"
                 password-parameter="password"
         />
         <logout logout-success-url="/loginPage?logout" />
+        <csrf disabled="true"/>
     </http>
 
     <authentication-manager>

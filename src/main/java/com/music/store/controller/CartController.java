@@ -59,13 +59,13 @@ public class CartController {
         String sessionId = request.getSession().getId();
         Cart cart = cartDao.get(sessionId);
         if(cart == null) {
-            cart = cartDao.add(new Cart());
+            cart = cartDao.add(new Cart(sessionId));
         }
         Product product = productDao.getProductById(productId);
         if(product == null){
             throw new IllegalArgumentException("Not found product with id = " + productId);
         }
-        cart.addCartItem(new CartItem());
+        cart.addCartItem(new CartItem(product));
         cartDao.update(sessionId, cart);
     }
 
@@ -80,7 +80,7 @@ public class CartController {
         if(product == null){
             throw new IllegalArgumentException("Not found product with id = " + productId);
         }
-        cart.removeCartItem(new CartItem());
+        cart.removeCartItem(new CartItem(product));
         cartDao.update(sessionId, cart);
     }
 

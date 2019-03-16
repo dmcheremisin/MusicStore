@@ -14,6 +14,8 @@
     <link href="<c:url value="/resources/css/carousel.css" />" rel="stylesheet">
     <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
 
+    <script src="<c:url value="/resources/js/angular.min.js" />" ></script>
+
 </head>
 <!-- NAVBAR
 ================================================== -->

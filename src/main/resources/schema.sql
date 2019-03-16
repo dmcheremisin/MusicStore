@@ -14,13 +14,24 @@ create table product (
 INSERT INTO product VALUES (
   NULL,
   'FENDER SQUIER BULLET',
-  'Instrument',
+  'instrument',
   'new',
   'Budget and comfortable guitar for any Fender lover',
   'Fender',
   200.0,
   'active',
   10
+);
+INSERT INTO product VALUES (
+  NULL,
+  'Q7',
+  'record',
+  'new',
+  'Q7 - Professional Dynamic Microphone',
+  'Samson',
+  50.0,
+  'active',
+  20
 );
 
 create table users(

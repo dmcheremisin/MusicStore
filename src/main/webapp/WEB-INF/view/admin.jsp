@@ -6,17 +6,14 @@
 <%@ include file="/WEB-INF/view/template/header.jsp" %>
 
 <div class="page-header">
-    <sec:authentication var="user" property="principal" />
+    <sec:authentication var="user" property="principal"/>
     <sec:authorize access="hasRole('ROLE_USER') and isAuthenticated()">
-        <h1>
-            Welcome: ${user.username} |
+        <h1>Welcome: ${user.username}
             <form:form action="${pageContext.request.contextPath}/logout" method="POST">
-                <p><input type="submit" value="Logout" /></p>
+                <input type="submit" value="Logout" class="btn btn-primary"/>
             </form:form>
         </h1>
     </sec:authorize>
-
-    <p class="lead">This is administrator page!</p>
 </div>
 
 <h3>

@@ -13,6 +13,13 @@ public class Cart {
     private Map<Integer, CartItem> cartItems = new HashMap<>();
     private double total;
 
+    public Cart() {
+    }
+
+    public Cart(String id) {
+        this.id = id;
+    }
+
     public String getId() {
         return id;
     }
@@ -41,6 +48,7 @@ public class Cart {
         int productId = cartItem.getProduct().getProductId();
         cartItems.merge(productId, cartItem, (item, cartItemVm) -> {
             item.setQuantity(item.getQuantity() + cartItemVm.getQuantity());
+            item.setTotalPrice(item.getQuantity() * item.getProduct().getProductPrice());
             return item;
         });
         updateTotal();
