@@ -2,23 +2,41 @@ package com.music.store.entity;
 
 import com.music.store.viewModels.CartItemViewModel;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Created by Dmitrii on 15.03.2019.
  */
-public class Cart {
+
+@Entity
+public class Cart implements Serializable {
+
+    private static final long serialVersionUID = 5543344561234328734L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
-    private Map<Integer, CartItem> cartItems = new HashMap<>();
+
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    List<CartItem> cartItems;
+
+    @OneToOne
+    @JoinColumn(name = "id")
+    private Customer customer;
+
     private double total;
-
-    public Cart() {
-    }
-
-    public Cart(String id) {
-        this.id = id;
-    }
 
     public String getId() {
         return id;
@@ -28,12 +46,20 @@ public class Cart {
         this.id = id;
     }
 
-    public Map<Integer, CartItem> getCartItems() {
+    public List<CartItem> getCartItems() {
         return cartItems;
     }
 
-    public void setCartItems(Map<Integer, CartItem> cartItems) {
+    public void setCartItems(List<CartItem> cartItems) {
         this.cartItems = cartItems;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public double getTotal() {
@@ -42,28 +68,5 @@ public class Cart {
 
     public void setTotal(double total) {
         this.total = total;
-    }
-
-    public void addCartItem(CartItem cartItem){
-        int productId = cartItem.getProduct().getProductId();
-        cartItems.merge(productId, cartItem, (item, cartItemVm) -> {
-            item.setQuantity(item.getQuantity() + cartItemVm.getQuantity());
-            item.setTotalPrice(item.getQuantity() * item.getProduct().getProductPrice());
-            return item;
-        });
-        updateTotal();
-    }
-
-    public void removeCartItem(CartItem cartItemViewModel) {
-        int productId = cartItemViewModel.getProduct().getProductId();
-        cartItems.remove(productId);
-        updateTotal();
-    }
-
-    private void updateTotal() {
-        total = 0;
-        for(CartItem cartItem : cartItems.values()){
-            total += cartItem.getTotalPrice();
-        }
     }
 }
