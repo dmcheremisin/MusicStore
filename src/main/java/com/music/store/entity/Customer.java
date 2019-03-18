@@ -18,7 +18,7 @@ public class Customer implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int customerId;
 
     private String name;
     private String email;
@@ -28,23 +28,23 @@ public class Customer implements Serializable {
     private boolean enabled;
 
     @OneToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "billingAddressId")
     private BillingAddress billingAddress;
 
     @OneToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "shippingAddressId")
     private ShippingAddress shippingAddress;
 
     @OneToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "cartId")
     private Cart cart;
 
-    public int getId() {
-        return id;
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
     public String getName() {

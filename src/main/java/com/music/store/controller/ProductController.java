@@ -3,6 +3,7 @@ package com.music.store.controller;
 import com.music.store.converters.ProductToProductViewModelConverter;
 import com.music.store.dao.ProductDao;
 import com.music.store.entity.Product;
+import com.music.store.services.ProductService;
 import com.music.store.viewModels.ProductViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,20 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/productList")
+@RequestMapping("/product")
 public class ProductController {
-
-
-    @Autowired
-    private ProductDao productDao;
 
     @Autowired
     private ProductToProductViewModelConverter productToProductViewModelConverter;
 
-    @RequestMapping()
+    @Autowired
+    private ProductService productService;
+
+    @RequestMapping("productList")
     public String getProducts(Model model) {
-        List<Product> productList = productDao.getAllProducts();
-        List<ProductViewModel> productViewModels = productToProductViewModelConverter.convertProducts(productList);
+        List<ProductViewModel> productViewModels = productService.getProductList();
         model.addAttribute("products", productViewModels);
 
         return "productList";
@@ -34,8 +33,7 @@ public class ProductController {
 
     @RequestMapping("/viewProduct/{id}")
     public String viewProduct(@PathVariable int id, Model model) {
-        Product product = productDao.getProductById(id);
-        ProductViewModel productViewModel = productToProductViewModelConverter.convert(product);
+        ProductViewModel productViewModel  = productService.getProductById(id);
         model.addAttribute("product", productViewModel);
         return "viewProduct";
     }

@@ -18,7 +18,7 @@ public class BillingAddress implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int billingAddressId;
 
     private String streetName;
     private String apartmentNumber;
@@ -28,15 +28,15 @@ public class BillingAddress implements Serializable {
     private String zip;
 
     @OneToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "customerId")
     private Customer customer;
 
-    public int getId() {
-        return id;
+    public int getBillingAddressId() {
+        return billingAddressId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setBillingAddressId(int billingAddressId) {
+        this.billingAddressId = billingAddressId;
     }
 
     public String getStreetName() {

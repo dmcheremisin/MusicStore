@@ -1,6 +1,8 @@
 package com.music.store.viewModels;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -8,11 +10,11 @@ import java.util.Map;
  */
 public class CartViewModel {
     private String id;
-    private Map<Integer, CartItemViewModel> cartItems;
+    private List<CartItemViewModel> cartItems;
     private double total;
 
     public CartViewModel(){
-        cartItems = new HashMap<>();
+        cartItems = new ArrayList<>();
         total = 0;
     }
 
@@ -29,11 +31,12 @@ public class CartViewModel {
         this.id = id;
     }
 
-    public Map<Integer, CartItemViewModel> getCartItems() {
+
+    public List<CartItemViewModel> getCartItems() {
         return cartItems;
     }
 
-    public void setCartItems(Map<Integer, CartItemViewModel> cartItems) {
+    public void setCartItems(List<CartItemViewModel> cartItems) {
         this.cartItems = cartItems;
     }
 
@@ -43,27 +46,5 @@ public class CartViewModel {
 
     public void setTotal(double total) {
         this.total = total;
-    }
-
-    public void addCartItem(CartItemViewModel cartItemViewModel){
-        int productId = cartItemViewModel.getProductViewModel().getProductId();
-        cartItems.merge(productId, cartItemViewModel, (item, cartItemVm) -> {
-            item.setQuantity(item.getQuantity() + cartItemVm.getQuantity());
-            return item;
-        });
-        updateTotal();
-    }
-
-    public void removeCartItem(CartItemViewModel cartItemViewModel) {
-        int productId = cartItemViewModel.getProductViewModel().getProductId();
-        cartItems.remove(productId);
-        updateTotal();
-    }
-
-    private void updateTotal() {
-        total = 0;
-        for(CartItemViewModel cartItemViewModel : cartItems.values()){
-            total += cartItemViewModel.getTotalPrice();
-        }
     }
 }

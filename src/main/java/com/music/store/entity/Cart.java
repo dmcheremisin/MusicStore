@@ -1,7 +1,5 @@
 package com.music.store.entity;
 
-import com.music.store.viewModels.CartItemViewModel;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,9 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Dmitrii on 15.03.2019.
@@ -27,23 +23,23 @@ public class Cart implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private String cartId;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     List<CartItem> cartItems;
 
     @OneToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "customerId")
     private Customer customer;
 
     private double total;
 
-    public String getId() {
-        return id;
+    public String getCartId() {
+        return cartId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setCartId(String cartId) {
+        this.cartId = cartId;
     }
 
     public List<CartItem> getCartItems() {

@@ -11,8 +11,8 @@ import com.music.store.viewModels.ProductViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Dmitrii on 15.03.2019.
@@ -27,11 +27,11 @@ public class CartViewModelToCartModelImpl implements CartViewModelToCartModel {
     public Cart convert(CartViewModel cartViewModel) {
         Cart cart = new Cart();
 
-        cart.setId(cartViewModel.getId());
+        cart.setCartId(cartViewModel.getId());
         cart.setTotal(cartViewModel.getTotal());
         if(cartViewModel.getCartItems() != null && !cartViewModel.getCartItems().isEmpty()) {
-            Map<Integer, CartItem> cartItems = new HashMap<>();
-            cartViewModel.getCartItems().forEach((k,v) -> cartItems.put(k, convert(v)));
+            List<CartItem> cartItems = new ArrayList<>();
+            cartViewModel.getCartItems().forEach(v -> cartItems.add(convert(v)));
             cart.setCartItems(cartItems);
         }
 
@@ -41,11 +41,11 @@ public class CartViewModelToCartModelImpl implements CartViewModelToCartModel {
     public CartViewModel convert(Cart cart) {
         CartViewModel cartViewModel = new CartViewModel();
 
-        cartViewModel.setId(cart.getId());
+        cartViewModel.setId(cart.getCartId());
         cartViewModel.setTotal(cart.getTotal());
         if(cart.getCartItems() != null && !cart.getCartItems().isEmpty()) {
-            Map<Integer, CartItemViewModel> cartItems = new HashMap<>();
-            cart.getCartItems().forEach((k,v) -> cartItems.put(k, convert(v)));
+            List<CartItemViewModel> cartItems = new ArrayList<>();
+            cart.getCartItems().forEach(v -> cartItems.add(convert(v)));
             cartViewModel.setCartItems(cartItems);
         }
 

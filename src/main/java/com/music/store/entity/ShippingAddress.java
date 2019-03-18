@@ -1,22 +1,19 @@
 package com.music.store.entity;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
  * Created by Dmitrii on 17.03.2019.
  */
+@Entity
 public class ShippingAddress implements Serializable {
 
     private static final long serialVersionUID = 284333445678328723L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int shippingAddressId;
 
     private String streetName;
     private String apartmentNumber;
@@ -26,15 +23,15 @@ public class ShippingAddress implements Serializable {
     private String zip;
 
     @OneToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "customerId")
     private Customer customer;
 
-    public int getId() {
-        return id;
+    public int getShippingAddressId() {
+        return shippingAddressId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setShippingAddressId(int shippingAddressId) {
+        this.shippingAddressId = shippingAddressId;
     }
 
     public String getStreetName() {
