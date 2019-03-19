@@ -10,6 +10,7 @@ import java.util.List;
  * Created by Dmitrii on 09.03.2019.
  */
 @Entity
+@Table(name = "product")
 public class Product implements Serializable {
 
     private static final long serialVersionUID = 3542344561234328734L;

@@ -1,22 +1,25 @@
 package com.music.store.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by Dmitrii on 17.03.2019.
  */
 @Entity
-public class Authorities {
+@Table(name = "authorities")
+public class Authority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
-    private String username;
+    @Column(name = "authority")
     private String authority;
+
+    @OneToOne
+    @JoinColumn(name = "username")
+    private User user;
 
     public int getId() {
         return id;
@@ -26,12 +29,12 @@ public class Authorities {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getAuthority() {

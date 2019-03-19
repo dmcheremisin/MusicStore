@@ -36,7 +36,7 @@
 		<param-value>
 			/WEB-INF/music-store-mvc-context.xml
 			/WEB-INF/spring-security.xml
-			<!--/WEB-INF/dump-loader.xml-->
+			/WEB-INF/dump-loader.xml
 		</param-value>
 	</context-param>
 

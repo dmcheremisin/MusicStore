@@ -1,27 +1,33 @@
 package com.music.store.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by Dmitrii on 17.03.2019.
  */
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "password")
     private String password;
 
+    @Column(name = "enabled")
     private boolean enabled;
 
+    @Column(name = "customerId")
     private int customerId;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Authority authority;
 
     public int getId() {
         return id;
@@ -61,5 +67,13 @@ public class User {
 
     public void setCustomerId(int customerId) {
         this.customerId = customerId;
+    }
+
+    public Authority getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(Authority authority) {
+        this.authority = authority;
     }
 }

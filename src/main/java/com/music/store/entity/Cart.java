@@ -1,14 +1,6 @@
 package com.music.store.entity;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
@@ -17,12 +9,14 @@ import java.util.List;
  */
 
 @Entity
+@Table(name = "cart")
 public class Cart implements Serializable {
 
     private static final long serialVersionUID = 5543344561234328734L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "cartId")
     private String cartId;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -32,6 +26,7 @@ public class Cart implements Serializable {
     @JoinColumn(name = "customerId")
     private Customer customer;
 
+    @Column(name = "total")
     private double total;
 
     public String getCartId() {

@@ -7,19 +7,32 @@ import java.io.Serializable;
  * Created by Dmitrii on 17.03.2019.
  */
 @Entity
+@Table(name = "shippingAddress")
 public class ShippingAddress implements Serializable {
 
     private static final long serialVersionUID = 284333445678328723L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "shippingAddressId")
     private int shippingAddressId;
 
+    @Column(name = "streetName")
     private String streetName;
+
+    @Column(name = "apartmentNumber")
     private String apartmentNumber;
+
+    @Column(name = "city")
     private String city;
+
+    @Column(name = "state")
     private String state;
+
+    @Column(name = "country")
     private String country;
+
+    @Column(name = "zip")
     private String zip;
 
     @OneToOne

@@ -1,22 +1,19 @@
 package com.music.store.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
  * Created by Dmitrii on 17.03.2019.
  */
 @Entity
+@Table(name = "customerOrder")
 public class CustomerOrder implements Serializable {
     private static final long serialVersionUID = 4872344561234328723L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
     @OneToOne
