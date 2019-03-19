@@ -5,7 +5,7 @@ import com.music.store.entity.Product;
 import java.util.List;
 
 public interface ProductDao {
-    void addEditProduct(Product product);
+    Product addEditProduct(Product product);
 
     Product getProductById(int id);
 

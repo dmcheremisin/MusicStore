@@ -9,7 +9,7 @@
     <p class="lead">Fill the below information to add a product:</p>
 </div>
 
-<form:form action="${pageContext.request.contextPath}/admin/productInventory/addProduct?${_csrf.parameterName}=${_csrf.token}"
+<form:form action="${pageContext.request.contextPath}/admin/product/addProduct?${_csrf.parameterName}=${_csrf.token}"
            method="post"
            modelAttribute="product"
            enctype="multipart/form-data"

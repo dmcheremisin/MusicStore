@@ -34,9 +34,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void addEditProduct(ProductViewModel productViewModel) {
+    public Product addEditProduct(ProductViewModel productViewModel) {
         Product product = productToProductViewModelConverter.convert(productViewModel);
         productDao.addEditProduct(product);
+        return product;
     }
 
     @Override

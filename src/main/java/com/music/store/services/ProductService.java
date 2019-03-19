@@ -11,7 +11,7 @@ public interface ProductService {
 
     ProductViewModel getProductById(int id);
 
-    void addEditProduct(ProductViewModel productViewModel);
+    Product addEditProduct(ProductViewModel productViewModel);
 
     void deleteProduct(int id);
 }

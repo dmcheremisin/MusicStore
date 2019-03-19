@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <%@ include file="/WEB-INF/view/template/header.jsp" %>
 
@@ -32,13 +33,14 @@
             <br />
 
             <c:set var="role" scope="page" value="${param.role}" />
-            <c:set var="url" scope="page" value="/productList" />
-            <c:if test="${role='admin'}">
+            <c:set var="url" scope="page" value="/product/productList" />
+            <sec:authorize access="hasRole('ROLE_ADMIN') and isAuthenticated()">
                 <c:set var="url" scope="page" value="/admin/productInventory" />
-            </c:if>
+            </sec:authorize>
 
             <p ng-controller="cartCtrl">
                 <a href="<c:url value="${url}" />" class="btn btn-default">Back</a>
+
                 <a href="#" class="btn btn-warning btn-large" ng-click="addToCart('${product.productId}')" >
                     <span class="glyphicon glyphicon-shopping-cart"></span>Order Now
                 </a>
