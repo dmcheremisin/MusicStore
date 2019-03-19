@@ -106,7 +106,7 @@ alter table customer add constraint customer_shipping foreign key (shippingAddre
 alter table customer add constraint customer_billing foreign key (billingAddressId) references billingAddress;
 
 INSERT INTO users VALUES (null, null, true, 'admin', '{noop}nimda');
-INSERT INTO authorities VALUES (NULL, 'ROLE_USER', 'admin');
+INSERT INTO authorities VALUES (NULL, 'ROLE_ADMIN', 'admin');
 
 INSERT INTO product VALUES (
   NULL,

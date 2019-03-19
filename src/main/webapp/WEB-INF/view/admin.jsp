@@ -7,7 +7,7 @@
 
 <div class="page-header">
     <sec:authentication var="user" property="principal"/>
-    <sec:authorize access="hasRole('ROLE_USER') and isAuthenticated()">
+    <sec:authorize access="hasRole('ROLE_ADMIN') and isAuthenticated()">
         <h1>Welcome: ${user.username}
             <form:form action="${pageContext.request.contextPath}/logout" method="POST">
                 <input type="submit" value="Logout" class="btn btn-primary"/>
