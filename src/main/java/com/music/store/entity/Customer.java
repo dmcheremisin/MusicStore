@@ -1,5 +1,8 @@
 package com.music.store.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -18,18 +21,22 @@ public class Customer implements Serializable {
     private int customerId;
 
     @Column(name = "name")
+    @NotEmpty(message = "Name must not be empty")
     private String name;
 
     @Column(name = "email")
+    @NotEmpty(message = "Email must not be empty")
     private String email;
 
     @Column(name = "phone")
     private String phone;
 
     @Column(name = "userName")
+    @NotEmpty(message = "User name must not be empty")
     private String userName;
 
     @Column(name = "password")
+    @NotEmpty(message = "Password must not be empty")
     private String password;
 
     @Column(name = "enabled")
@@ -45,6 +52,7 @@ public class Customer implements Serializable {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cartId")
+    @JsonIgnore
     private Cart cart;
 
     public int getCustomerId() {
