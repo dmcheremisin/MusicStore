@@ -17,11 +17,11 @@ public class CartItem implements Serializable {
     @Column(name = "id")
     private int id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cartId")
     private Cart cart;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "productId")
     private Product product;
 

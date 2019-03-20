@@ -19,10 +19,10 @@ public class Cart implements Serializable {
     @Column(name = "cartId")
     private String cartId;
 
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<CartItem> cartItems;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customerId")
     private Customer customer;
 

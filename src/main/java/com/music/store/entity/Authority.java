@@ -17,7 +17,7 @@ public class Authority {
     @Column(name = "authority")
     private String authority;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "username")
     private User user;
 

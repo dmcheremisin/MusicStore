@@ -11,20 +11,19 @@ public class ProductViewModel {
     @NotEmpty(message = "The product name must not be null")
     private String productName;
 
+    @NotEmpty(message = "The product category must not be null")
     private String productCategory;
-    private String productDescription;
 
     @Min(value = 0, message = "The product price must not be less than zero")
     private double productPrice;
 
-    private String productCondition;
-    private String productStatus;
-
     @Min(value = 0, message = "The product price must not be less than zero")
     private int unitInStock;
 
+    private String productDescription;
+    private String productCondition;
+    private String productStatus;
     private String productManufacturer;
-
     private MultipartFile productImage;
 
     public int getProductId() {

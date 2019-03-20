@@ -35,7 +35,7 @@ public class ShippingAddress implements Serializable {
     @Column(name = "zip")
     private String zip;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customerId")
     private Customer customer;
 

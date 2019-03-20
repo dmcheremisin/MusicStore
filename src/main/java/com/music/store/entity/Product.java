@@ -43,7 +43,7 @@ public class Product implements Serializable {
     @Column(name = "productManufacturer")
     private String productManufacturer;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<CartItem> cartItems;
 
     public int getProductId() {

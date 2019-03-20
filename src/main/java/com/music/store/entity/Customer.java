@@ -35,15 +35,15 @@ public class Customer implements Serializable {
     @Column(name = "enabled")
     private boolean enabled;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "billingAddressId")
     private BillingAddress billingAddress;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "shippingAddressId")
     private ShippingAddress shippingAddress;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cartId")
     private Cart cart;
 
