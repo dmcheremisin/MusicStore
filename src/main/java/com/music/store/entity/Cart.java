@@ -1,5 +1,7 @@
 package com.music.store.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -19,11 +21,12 @@ public class Cart implements Serializable {
     @Column(name = "cartId")
     private int cartId;
 
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     List<CartItem> cartItems;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customerId")
+    @JsonIgnore
     private Customer customer;
 
     @Column(name = "total")

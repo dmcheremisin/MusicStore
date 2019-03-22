@@ -21,12 +21,12 @@
                 <th>Action</th>
             </tr>
             <tr ng-repeat="item in cart.cartItems">
-                <td>{{item.productViewModel.productName}}</td>
-                <td>{{item.productViewModel.productPrice}}</td>
+                <td>{{item.product.productName}}</td>
+                <td>{{item.product.productPrice}}</td>
                 <td>{{item.quantity}}</td>
                 <td>{{item.totalPrice}}</td>
                 <td>
-                    <a href="#" class="label label-danger" ng-click="removeFromCart(item.productViewModel.productId)">
+                    <a href="#" class="label label-danger" ng-click="removeFromCart(item.product.productId)">
                         <span class="glyphicon glyphicon-remove">Remove</span>
                     </a>
                 </td>
@@ -34,13 +34,13 @@
             <tr>
                 <th></th>
                 <th></th>
-                <th></th>
-                <th>{{cart.total}}</th>
+                <th>Grand total:</th>
+                <th>{{grandTotal}}</th>
                 <th></th>
             </tr>
         </table>
         <div>
-            <a href="<spring:url value="/productList" />" class="btn btn-primary">Continue shopping</a> <a class="btn btn-danger" ng-click="clearCart()"><span class="glyphicon glyphicon-remove-sign"></span> Clear cart</a>
+            <a href="<spring:url value="/product/productList" />" class="btn btn-primary">Continue shopping</a> <a class="btn btn-danger" ng-click="clearCart()"><span class="glyphicon glyphicon-remove-sign"></span> Clear cart</a>
         </div>
     </div>
 </section>

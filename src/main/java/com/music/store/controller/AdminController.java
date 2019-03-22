@@ -40,7 +40,7 @@ public class AdminController {
 
     @RequestMapping("/productInventory")
     public String productInventory(Model model) {
-        List<ProductViewModel> productList = productService.getProductList();
+        List<Product> productList = productService.getProductList();
         model.addAttribute("products", productList);
         return "productInventory";
     }
@@ -63,16 +63,16 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/product/addProduct", method = RequestMethod.POST)
-    public String addProduct(@Valid @ModelAttribute("product") ProductViewModel productViewModel,
+    public String addProduct(@Valid @ModelAttribute("product") Product product,
                              BindingResult bindingResult,
                              HttpServletRequest request){
         if(bindingResult.hasErrors()){
             return "addProduct";
         }
 
-        Product product = productService.addEditProduct(productViewModel);
+        product = productService.addEditProduct(product);
 
-        MultipartFile productImage = productViewModel.getProductImage();
+        MultipartFile productImage = product.getProductImage();
         String realPath = request.getSession().getServletContext().getRealPath("/");
         Path path = Paths.get(realPath + "\\WEB-INF\\resources\\images\\" + product.getProductId() + ".png");
 
@@ -108,14 +108,14 @@ public class AdminController {
 
     @RequestMapping("/product/edit/{id}")
     public String editForm(@PathVariable int id, Model model) {
-        ProductViewModel productViewModel = productService.getProductById(id);
+        Product productViewModel = productService.getProductById(id);
         model.addAttribute("product", productViewModel);
 
         return "editProduct";
     }
 
     @RequestMapping(value = "/product/edit", method = RequestMethod.POST)
-    public String editProduct(@Valid @ModelAttribute("product") ProductViewModel productViewModel,
+    public String editProduct(@Valid @ModelAttribute("product") Product productViewModel,
                               BindingResult bindingResult,
                               HttpServletRequest request) {
         if(bindingResult.hasErrors()){

@@ -20,22 +20,22 @@ public class ProductServiceImpl implements ProductService {
     private ProductToProductViewModelConverter productToProductViewModelConverter;
 
     @Override
-    public List<ProductViewModel> getProductList() {
+    public List<Product> getProductList() {
         List<Product> allProducts = productDao.getAllProducts();
-        List<ProductViewModel> productViewModels = productToProductViewModelConverter.convertProducts(allProducts);
-        return productViewModels;
+        //List<ProductViewModel> productViewModels = productToProductViewModelConverter.convertProducts(allProducts);
+        return allProducts;
     }
 
     @Override
-    public ProductViewModel getProductById(int id) {
+    public Product getProductById(int id) {
         Product product = productDao.getProductById(id);
-        ProductViewModel productViewModel = productToProductViewModelConverter.convert(product);
-        return productViewModel;
+        //ProductViewModel productViewModel = productToProductViewModelConverter.convert(product);
+        return product;
     }
 
     @Override
-    public Product addEditProduct(ProductViewModel productViewModel) {
-        Product product = productToProductViewModelConverter.convert(productViewModel);
+    public Product addEditProduct(Product product) {
+        //Product product = productToProductViewModelConverter.convert(productViewModel);
         productDao.addEditProduct(product);
         return product;
     }

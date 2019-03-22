@@ -109,6 +109,9 @@ alter table customer add constraint customer_billing foreign key (billingAddress
 INSERT INTO users VALUES (null, null, true, 'admin', '{noop}nimda');
 INSERT INTO authorities VALUES (NULL, 'ROLE_ADMIN', 'admin');
 
+INSERT INTO users VALUES (null, null, true, 'user', '{noop}resu');
+INSERT INTO authorities VALUES (NULL, 'ROLE_USER', 'user');
+
 INSERT INTO product VALUES (
   NULL,
   'FENDER SQUIER BULLET',

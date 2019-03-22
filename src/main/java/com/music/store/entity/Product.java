@@ -1,6 +1,7 @@
 package com.music.store.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -43,8 +44,12 @@ public class Product implements Serializable {
     @Column(name = "productManufacturer")
     private String productManufacturer;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<CartItem> cartItems;
+
+    @Transient
+    private MultipartFile productImage;
 
     public int getProductId() {
         return productId;
@@ -124,5 +129,13 @@ public class Product implements Serializable {
 
     public void setCartItems(List<CartItem> cartItems) {
         this.cartItems = cartItems;
+    }
+
+    public MultipartFile getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(MultipartFile productImage) {
+        this.productImage = productImage;
     }
 }

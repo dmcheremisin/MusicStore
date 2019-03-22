@@ -25,7 +25,7 @@ public class ProductController {
 
     @RequestMapping("productList")
     public String getProducts(Model model) {
-        List<ProductViewModel> productViewModels = productService.getProductList();
+        List<Product> productViewModels = productService.getProductList();
         model.addAttribute("products", productViewModels);
 
         return "productList";
@@ -33,7 +33,7 @@ public class ProductController {
 
     @RequestMapping("/viewProduct/{id}")
     public String viewProduct(@PathVariable int id, Model model) {
-        ProductViewModel productViewModel  = productService.getProductById(id);
+        Product productViewModel  = productService.getProductById(id);
         model.addAttribute("product", productViewModel);
         return "viewProduct";
     }

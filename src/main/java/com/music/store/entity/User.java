@@ -26,7 +26,7 @@ public class User {
     @Column(name = "customerId")
     private int customerId;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Authority authority;
 
     public int getId() {

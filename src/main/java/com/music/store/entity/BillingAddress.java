@@ -35,7 +35,7 @@ public class BillingAddress implements Serializable {
     @Column(name = "zip")
     private String zip;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customerId")
     private Customer customer;
 
