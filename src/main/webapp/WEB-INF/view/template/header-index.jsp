@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
 <html>
@@ -42,8 +44,26 @@
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                     <ul class="nav navbar-nav pull-right">
-                        <li><a href="<c:url value="/admin" />">Admin</a></li>
-                        <li><a href="<c:url value="/register" />">Register</a></li>
+                        <sec:authentication var="user" property="principal"/>
+                        <sec:authorize access="isAuthenticated()">
+                            <li><a>Welcome: ${user.username}</a></li>
+                            <li>
+                                <form:form class="mysic_logout" action="${pageContext.request.contextPath}/logout" method="POST">
+                                    <input type="hidden" value="Logout"/>
+                                </form:form>
+                                <a href="#" class="logout">Logout</a>
+                            </li>
+                            <sec:authorize access="!hasRole('ROLE_ADMIN')">
+                                <li><a href="<c:url value="/customer/cart" />">Cart</a></li>
+                            </sec:authorize>
+                            <sec:authorize access="hasRole('ROLE_ADMIN')">
+                                <li><a href="<c:url value="/admin" />">Admin</a></li>
+                            </sec:authorize>
+                        </sec:authorize>
+                        <sec:authorize access="!isAuthenticated()">
+                            <li><a href="<c:url value="/loginPage" />">Login</a></li>
+                            <li><a href="<c:url value="/register" />">Register</a></li>
+                        </sec:authorize>
                     </ul>
                 </div>
             </div>
