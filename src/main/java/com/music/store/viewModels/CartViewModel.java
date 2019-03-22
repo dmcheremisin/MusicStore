@@ -9,7 +9,7 @@ import java.util.Map;
  * Created by Dmitrii on 15.03.2019.
  */
 public class CartViewModel {
-    private String id;
+    private Integer id;
     private List<CartItemViewModel> cartItems;
     private double total;
 
@@ -18,19 +18,18 @@ public class CartViewModel {
         total = 0;
     }
 
-    public CartViewModel(String id) {
+    public CartViewModel(Integer id) {
         this();
         this.id = id;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
-
 
     public List<CartItemViewModel> getCartItems() {
         return cartItems;

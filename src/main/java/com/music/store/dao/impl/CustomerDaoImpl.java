@@ -42,7 +42,7 @@ public class CustomerDaoImpl implements CustomerDao {
         authority.setAuthority("ROLE_USER");
 
         session.saveOrUpdate(user);
-        //session.saveOrUpdate(authority);
+        session.saveOrUpdate(authority);
 
         Cart cart = new Cart();
         cart.setCustomer(customer);

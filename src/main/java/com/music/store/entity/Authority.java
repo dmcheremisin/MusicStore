@@ -18,7 +18,7 @@ public class Authority {
     private String authority;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "username")
+    @JoinColumn(name = "name", referencedColumnName = "name")
     private User user;
 
     public int getId() {
