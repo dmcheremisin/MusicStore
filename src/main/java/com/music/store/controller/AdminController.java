@@ -1,7 +1,9 @@
 package com.music.store.controller;
 
 import com.music.store.converters.ProductToProductViewModelConverter;
+import com.music.store.entity.Customer;
 import com.music.store.entity.Product;
+import com.music.store.services.CustomerService;
 import com.music.store.services.ProductService;
 import com.music.store.viewModels.ProductViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,9 @@ public class AdminController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private CustomerService customerService;
+
 
     @Autowired
     private ProductToProductViewModelConverter productToProductViewModelConverter;
@@ -47,6 +52,10 @@ public class AdminController {
 
     @RequestMapping("/customer")
     public String customerManagement(Model model) {
+        List<Customer> customers = customerService.getAllCustomers();
+
+        model.addAttribute("customers", customers);
+
         return "customerManagement";
     }
 
