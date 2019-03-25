@@ -12,7 +12,7 @@
 
 <section class="container">
         <p>
-            <a href="<spring:url value="/product/productList" />" class="btn btn-primary">Products</a>
+            <a href="<spring:url value="/loginPage" />" class="btn btn-primary">Login</a>
         </p>
 </section>
 

@@ -21,6 +21,7 @@
     <div class="form-group">
         <label for="email">Email</label>
         <form:errors path="email" cssStyle="color: red" />
+        <span style="color: red">${emailMsg}</span>
         <form:input path="email" id="email" class="form-control" />
     </div>
     
@@ -33,6 +34,7 @@
     <div class="form-group">
         <label for="userName">User name</label>
         <form:errors path="userName" cssStyle="color: red" />
+        <span style="color: red">${userNameMsg}</span>
         <form:input path="userName" id="userName" class="form-control" />
     </div>
     
