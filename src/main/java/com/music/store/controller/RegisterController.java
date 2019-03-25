@@ -7,9 +7,13 @@ import com.music.store.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class RegisterController {
@@ -30,9 +34,24 @@ public class RegisterController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(@ModelAttribute("customer") Customer customer,  Model model) {
-        customerService.addCustomer(customer);
+    public String register(@Valid @ModelAttribute("customer") Customer customer, BindingResult bindingResult, Model model) {
+        if(bindingResult.hasErrors()) {
+            return "registerCustomer";
+        }
 
+        List<Customer> customers = customerService.getAllCustomers();
+
+        if(customers.stream().anyMatch(c -> customer.getEmail().equalsIgnoreCase(c.getEmail()))) {
+            model.addAttribute("emailMsg", "Email already exists");
+            return "registerCustomer";
+        }
+
+        if(customers.stream().anyMatch(c -> customer.getUserName().equalsIgnoreCase(c.getUserName()))) {
+            model.addAttribute("userNameMsg", "User name already exists");
+            return "registerCustomer";
+        }
+
+        customerService.addCustomer(customer);
         return "registerSuccess";
     }
 }
