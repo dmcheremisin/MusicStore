@@ -1,7 +1,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-
 <%@ include file="/WEB-INF/view/template/header.jsp" %>
+
+<script>
+    $(document).ready(function () {
+        $('.table').DataTable({
+            "lengthMenu": [[1,2,3,5,10,-1], [1,2,3,5,10, "All"]]
+        });
+    });
+</script>
 
 <div class="page-header">
     <h1>Product Inventory</h1>

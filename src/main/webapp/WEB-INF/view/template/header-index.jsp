@@ -14,10 +14,13 @@
 
     <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
     <link href="<c:url value="/resources/css/carousel.css" />" rel="stylesheet">
+    <link href="<c:url value="/resources/css/datatables.min.css" />" rel="stylesheet">
     <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
 
-    <script src="<c:url value="/resources/js/angular.min.js" />" ></script>
-
+    <script src="<c:url value="/resources/js/jquery.min.js" />"></script>
+    <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+    <%--<script src="<c:url value="/resources/js/jquery.dataTables.min.js" />"></script>--%>
+    <script src="<c:url value="/resources/js/datatables.min.js" />"></script>
 </head>
 <!-- NAVBAR
 ================================================== -->
@@ -41,7 +44,7 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="<c:url value="/" /> ">Home</a></li>
                         <li><a href="<c:url value="/product/productList" />">Products</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="<c:url value="/about" />">About Us</a></li>
                     </ul>
                     <ul class="nav navbar-nav pull-right">
                         <sec:authentication var="user" property="principal"/>

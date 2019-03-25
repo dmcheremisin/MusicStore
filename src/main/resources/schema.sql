@@ -114,7 +114,7 @@ INSERT INTO authorities VALUES (NULL, 'ROLE_USER', 'user');
 
 INSERT INTO product VALUES (
   NULL,
-  'FENDER SQUIER BULLET',
+  'Fender Squier Bullet',
   'instrument',
   'new',
   'Budget and comfortable guitar for any Fender lover',
@@ -134,4 +134,16 @@ INSERT INTO product VALUES (
   50.0,
   'active',
   20
+);
+
+INSERT INTO product VALUES (
+  NULL,
+  'Mediator',
+  'accessory',
+  'new',
+  'Med/heavy 1.0mm mediator made by Planet Waves',
+  'Planet Waves',
+  2.0,
+  'active',
+  30
 );
