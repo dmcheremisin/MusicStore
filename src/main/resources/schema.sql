@@ -3,7 +3,7 @@ create table users (
   customerId integer,
   enabled boolean not null,
   name varchar(255),
-  password varchar(255),
+  password varchar(255)
 );
 
 create table authorities (
